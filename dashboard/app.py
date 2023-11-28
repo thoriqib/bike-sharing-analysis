@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(style='dark')
 
-df = pd.read_csv("https://raw.githubusercontent.com/thoriqib/bike-sharing-analysis/master/dashboard/day.csv", delimiter=",")
+df = pd.read_csv("/content/day.csv", delimiter=",")
 df['dteday'] = pd.to_datetime(df['dteday'])
 
 st.header('Dashboard')
@@ -42,21 +42,16 @@ st.subheader('Jumlah Rental Sepeda Menurut Cuaca dan Hari Kerja')
 col1, col2 = st.columns(2)
 df1 = main_df.groupby('weathersit')['cnt'].sum()
 df1 = pd.DataFrame(df1)
-df1['weathergroup'] = ["Clear", "Mist + Cloudy", "Light Rain/Snow"]
 df2 = main_df.groupby('weekday')['cnt'].sum()
 df2 = pd.DataFrame(df2)
-df2['daygroup'] = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
 
 with col1:
     fig, ax = plt.subplots(figsize=(20, 10))
 
-    colors = ["#D3D3D3", "#90CAF9", "#D3D3D3", "#D3D3D3"]
-
     sns.barplot(
         y='cnt',
-        x='weathergroup',
+        x=df1.index,
         data=df1,
-        palette=colors,
         ax=ax
     )
     ax.set_title("Jumlah Rental Sepeda berdasarkan cuaca", loc="center", fontsize=50)
@@ -69,11 +64,11 @@ with col1:
 with col2:
     fig, ax = plt.subplots(figsize=(20, 10))
 
-    colors = ["#D3D3D3", "#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
+    colors = ["#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 
     sns.barplot(
         y='cnt',
-        x='daygroup',
+        x=df2.index,
         data=df2,
         palette=colors,
         ax=ax
@@ -84,3 +79,23 @@ with col2:
     ax.tick_params(axis='x', labelsize=35)
     ax.tick_params(axis='y', labelsize=30)
     st.pyplot(fig)
+
+st.markdown(
+    """
+    # Keterangan
+    **Cuaca**
+    - 1: Cerah
+    - 2: Berawan
+    - 3: Hujan/Salju Ringan
+    - 4: Badai
+
+    **Hari**
+    - 0: Minggu
+    - 1: Senin
+    - 2: Selasa
+    - 3: Rabu
+    - 4: Kamis
+    - 5: Jumat
+    - 6: Sabtu
+    """
+)

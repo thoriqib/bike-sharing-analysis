@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(style='dark')
 
-df = pd.read_csv("/content/day.csv", delimiter=",")
+df = pd.read_csv("https://raw.githubusercontent.com/thoriqib/bike-sharing-analysis/master/dashboard/day.csv", delimiter=",")
 df['dteday'] = pd.to_datetime(df['dteday'])
 
-st.header('Ini percobaan Streamlit di Google Colab')
+st.header('Dashboard')
 
 min_date = df["dteday"].min()
 max_date = df["dteday"].max()

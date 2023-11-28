@@ -12,3 +12,7 @@ pip install numpy pandas scipy matplotlib seaborn jupyter streamlit babel
 streamlit run dashboard/app.py
 ```
 
+## Link Dashboard
+> https://thoriq-bike-sharing-analysis.streamlit.app/
+
+Note: Pengerjaan menggunakan Google Colab

@@ -15,4 +15,8 @@ streamlit run dashboard/app.py
 ## Link Dashboard
 > https://thoriq-bike-sharing-analysis.streamlit.app/
 
+## Screenshot
+![Screenshot Dashboard](https://raw.githubusercontent.com/thoriqib/bike-sharing-analysis/master/Screenshot%20Dashboard.png "Screenshot Dashboard")
+
+
 Note: Pengerjaan menggunakan Google Colab
